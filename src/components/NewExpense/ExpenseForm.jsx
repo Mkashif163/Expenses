@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
 
   const currentDate = new Date().toISOString().split('T')[0];
   const minDate = new Date();
@@ -28,8 +28,16 @@ const ExpenseForm = () => {
       amount: formInput.enteredAmount,
       date: new Date(formInput.enteredDate),
     };
+    props.onSaveExpenseData(expenseData);
+    setFormInput({
+      enteredTitle: "",
+      enteredAmount: "",
+      enteredDate: "",
+    });
     console.log(expenseData);
   }
+
+  
 
   return (
     <form>
